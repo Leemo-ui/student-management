@@ -1,0 +1,15 @@
+# Compiled files
+target/
+*.class
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# System files
+data/
+.DS_Store
+
+# Configuration
+src/main/resources/db.properties
