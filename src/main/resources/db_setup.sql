@@ -42,3 +42,11 @@ CREATE TABLE IF NOT EXISTS student_course (
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (course_code) REFERENCES courses(code)
 );
+
+CREATE TABLE IF NOT EXISTS programme_course (
+    programme_code VARCHAR(20),
+    course_code VARCHAR(20),
+    PRIMARY KEY (programme_code, course_code),
+    FOREIGN KEY (programme_code) REFERENCES programmes(code),
+    FOREIGN KEY (course_code) REFERENCES courses(code)
+);

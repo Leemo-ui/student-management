@@ -1,18 +1,41 @@
 package system;
 
 import model.*;
-import java.util.List;
+import java.util.*;
 
 public interface StudentSystem {
-    void addStudent(Student student);
-    void addCourse(Course course);
-    void addProgramme(Programme programme);
-    Student getStudent(String id);
-    List<Student> getAllStudents();
-    void save();
-    void registerStudentToProgramme(String studentId, String programmeCode);
-    void registerStudentToCourse(String studentId, String courseCode);
-    void assignCourseScore(String studentId, String courseCode, double score);
-    Programme getProgramme(String code);
-    Course getCourse(String code);
+    // Student operations
+    boolean addStudent(Student student);
+    Student getStudent(String studentId);
+    boolean enrollStudentInProgramme(String studentId, String programmeId);
+    boolean registerStudentForCourse(String studentId, String courseId);
+    boolean updateStudentScore(String studentId, String courseId, double score);
+    Set<Student> getStudentsInCourse(String courseId);
+    Set<Student> getStudentsInProgramme(String programmeId);
+    Map<String, Double> getStudentResults(String studentId);
+
+    // Lecturer operations
+    boolean addLecturer(Lecturer lecturer);
+    Lecturer getLecturer(String lecturerId);
+    boolean assignLecturerToCourse(String lecturerId, String courseId);
+    Set<Course> getCoursesByLecturer(String lecturerId);
+
+    // Course operations
+    boolean addCourse(Course course);
+    Course getCourse(String courseId);
+    boolean addCourseToProgramme(String programmeId, String courseId);
+    
+    // Programme operations
+    boolean addProgramme(Programme programme);
+    Programme getProgramme(String programmeId);
+
+    // Data operations
+    void saveData();
+    void loadData();
+    
+    // Collection operations
+    Set<Student> getAllStudents();
+    Set<Course> getAllCourses();
+    Set<Programme> getAllProgrammes();
+    Set<Lecturer> getAllLecturers();
 }

@@ -1,19 +1,36 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Lecturer extends Person {
-    private List<Course> courses;
-    private String department;
+    private Set<Course> assignedCourses;
 
-    public Lecturer(String id, String name, String email, String department) {
-        super(id, name, email);
-        this.department = department;
-        this.courses = new ArrayList<>();
+    public Lecturer(String id, String firstName, String lastName, String email) {
+        super(id, firstName, lastName, email);
+        this.assignedCourses = new HashSet<>();
     }
 
-    public List<Course> getCourses() { return courses; }
-    public String getDepartment() { return department; }
-    public void setDepartment(String department) { this.department = department; }
+    public boolean assignCourse(Course course) {
+        if (assignedCourses.size() >= 2) {
+            return false;
+        }
+        return assignedCourses.add(course);
+    }
+
+    public boolean removeCourse(Course course) {
+        return assignedCourses.remove(course);
+    }
+
+    public Set<Course> getAssignedCourses() {
+        return new HashSet<>(assignedCourses);
+    }
+
+    public String getName() {
+        return getFirstName() + " " + getLastName();
+    }
+
+    public String getDepartment() {
+        return "Faculty";
+    }
 }
